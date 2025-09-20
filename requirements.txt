@@ -1,0 +1,30 @@
+# Web Framework
+flask==2.0.1
+werkzeug==2.0.3
+
+# LaTeX Processing
+pylatex==1.4.1
+pandas==2.0.3
+
+# Text Processing
+markdown==3.4.3
+mistune>=3.0.0
+python-docx==0.8.11
+
+# AI/ML
+transformers>=4.30.0
+torch>=2.0.0
+accelerate>=0.20.0
+
+# PDF Processing
+PyMuPDF>=1.23.0
+
+# Utilities
+python-dotenv>=1.0.0
+gunicorn>=21.0.0
+
+# Development
+pytest>=7.0.0
+pytest-cov>=4.0.0
+black>=22.0.0
+flake8>=5.0.0 

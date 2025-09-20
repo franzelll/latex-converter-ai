@@ -1,0 +1,42 @@
+\documentclass{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[german]{babel}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{xcolor}
+
+\begin{document}
+
+{% for section in sections %}
+{% if section.type == 'header' %}
+\section*{{{ section.title }}}
+{% elif section.type == 'table' %}
+\begin{longtable}{{{ section.columns }}}
+\toprule
+{% for row in section.rows %}
+{% for cell in row %}
+{{ cell }}{% if not loop.last %} & {% endif %}
+{% endfor %} \\
+{% if loop.first %}
+\midrule
+{% endif %}
+{% endfor %}
+\bottomrule
+\end{longtable}
+{% elif section.type == 'list' %}
+\begin{itemize}
+{% for item in section.items %}
+\item {{ item }}
+{% endfor %}
+\end{itemize}
+{% else %}
+{{ section.content }}
+{% endif %}
+{% endfor %}
+
+\end{document} 
