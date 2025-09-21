@@ -62,7 +62,8 @@ class TestFlaskApp:
         assert b'Error processing text' in response.data
     
     @patch('app.fitz.open')
-    def test_pdf_upload_success(self, mock_fitz, client):
+    @patch('app.send_file')
+    def test_pdf_upload_success(self, mock_send_file, mock_fitz, client):
         """Test erfolgreicher PDF-Upload"""
         # Mock PDF-Dokument
         mock_doc = MagicMock()
@@ -71,6 +72,9 @@ class TestFlaskApp:
         mock_page.get_text.return_value = {"blocks": []}
         mock_doc.__getitem__.return_value = mock_page
         mock_fitz.return_value = mock_doc
+        
+        # Mock send_file
+        mock_send_file.return_value = 'PDF content'
         
         # Mock vereinfachte PDF-Erstellung
         with patch('app.simplify_full_text') as mock_simplify:
